@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard | FasalMitra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+
+    <header class="dashboard-nav">
+        <a href="index.html" class="logo">
+            🌱 Fasal<span class="logo-highlight">Mitra</span>
+        </a>
+        <a href="index.html" class="back-home">← Back to Home</a>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="dashboard-welcome">
+            <div>
+                <span class="eyebrow">FARMER CONTROL CENTER</span>
+                <h1>Welcome to your Dashboard</h1>
+                <p>Manage your harvest. Explore your market. Make smarter decisions.</p>
+            </div>
+            <div class="welcome-icon">🌾</div>
+        </section>
+
+        <section class="dashboard-stats">
+            <article class="dashboard-stat">
+                <span>🌱</span>
+                <p>My Crops</p>
+                <h2 id="cropCount">0</h2>
+            </article>
+
+            <article class="dashboard-stat">
+                <span>📦</span>
+                <p>Total Harvest</p>
+                <h2 id="totalQuantity">0 Qt</h2>
+            </article>
+
+            <article class="dashboard-stat">
+                <span>📍</span>
+                <p>My Location</p>
+                <h2 id="farmerLocation">Not added</h2>
+            </article>
+        </section>
+
+        <section class="dashboard-main-grid">
+
+            <div class="dashboard-panel">
+                <div class="panel-heading">
+                    <div>
+                        <span class="eyebrow">HARVEST MANAGEMENT</span>
+                        <h2>Add Your Harvest</h2>
+                    </div>
+                    <span class="panel-icon">🌾</span>
+                </div>
+
+                <p class="panel-description">
+                    Enter your crop details to explore better selling opportunities.
+                </p>
+
+                <form id="cropForm">
+
+                    <div class="form-group">
+                        <label for="farmerName">Farmer Name</label>
+                        <input type="text" id="farmerName"
+                            placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cropName">Select Crop</label>
+                        <select id="cropName" required>
+                            <option value="">Choose your crop</option>
+                            <option value="Tomato">Tomato</option>
+                            <option value="Potato">Potato</option>
+                            <option value="Onion">Onion</option>
+                            <option value="Rice">Rice</option>
+                            <option value="Wheat">Wheat</option>
+                            <option value="Maize">Maize</option>
+                            <option value="Cabbage">Cabbage</option>
+                            <option value="Cauliflower">Cauliflower</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="otherCropGroup" hidden>
+                        <label for="otherCrop">Enter Crop Name</label>
+                        <input type="text" id="otherCrop"
+                            placeholder="Enter crop name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Harvest Quantity (Quintals)</label>
+                        <input type="number" id="quantity"
+                            placeholder="Example: 20" min="0.1"
+                            step="0.1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Village / District</label>
+                        <input type="text" id="location"
+                            placeholder="Example: Khordha, Odisha" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="harvestDate">Harvest Date</label>
+                        <input type="date" id="harvestDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="storage">Storage Availability</label>
+                        <select id="storage" required>
+                            <option value="">Select availability</option>
+                            <option value="Available">Yes, storage available</option>
+                            <option value="Unavailable">No storage available</option>
+                            <option value="Limited">Limited storage available</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="primary-button submit-harvest">
+                        Save Harvest Details →
+                    </button>
+
+                    <p id="formMessage" class="form-message" role="status"></p>
+                </form>
+            </div>
+
+            <div class="dashboard-side">
+
+                <div class="dashboard-panel advisor-preview">
+                    <span class="eyebrow">INTELLIGENT FARMING</span>
+                    <div class="advisor-icon">✦</div>
+                    <h2>AI Sell Advisor</h2>
+                    <p>
+                        Discover suitable selling opportunities using
+                        crop details and available market information.
+                    </p>
+                    <button class="secondary-button" onclick="openAdvisor()">
+                        Explore AI Advisor →
+                    </button>
+                </div>
+
+                <div class="dashboard-panel quick-actions">
+                    <h2>Quick Actions</h2>
+
+                    <a href="market.html" class="quick-action">
+                        <span>📊</span>
+                        <span>Compare Mandi Prices</span>
+                        <span>→</span>
+                    </a>
+
+                    <a href="storage.html" class="quick-action">
+                        <span>🏬</span>
+                        <span>Find Storage</span>
+                        <span>→</span>
+                    </a>
+
+                    <a href="advisor.html" class="quick-action">
+                        <span>🤖</span>
+                        <span>AI Sell Advisor</span>
+                        <span>→</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="dashboard-panel saved-crops">
+            <div class="panel-heading">
+                <div>
+                    <span class="eyebrow">YOUR HARVEST RECORDS</span>
+                    <h2>My Crops</h2>
+                </div>
+                <span class="panel-icon">📋</span>
+            </div>
+
+            <div id="cropList" class="crop-list">
+                <p class="empty-message">
+                    No harvest records yet. Add your first crop above.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="dashboard-footer">
+        FasalMitra © 2026 | Smarter decisions for better harvests.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
